@@ -12,6 +12,13 @@ namespace IpAndEmailChecker
         String ipAddress;
         String email;
 
+        const String EMAIL_PATTERN = @"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*(?<=[0-9a-zA-Z])@)))"
+                                    +@"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-z]\.)+[a-zA-Z]{2,6}))$";
+       
+        const String IP_PATTERN = "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+          "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+          "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+          "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
         public Program()
         {
             setIpAddress();
@@ -27,11 +34,8 @@ namespace IpAndEmailChecker
 
         private void checkIpAddress()
         {
-            String ipPattern = "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
-            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
-            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
-            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$"; ;
-            if (Regex.IsMatch(ipAddress,ipPattern))
+          
+            if (Regex.IsMatch(ipAddress,IP_PATTERN))
             {
                 Console.WriteLine("IP address ok!");
             }
@@ -51,7 +55,9 @@ namespace IpAndEmailChecker
 
         private void checkEmail()
         {
-            if (Regex.IsMatch(email,""))
+            
+
+            if (Regex.IsMatch(email,EMAIL_PATTERN))
             {
                 Console.WriteLine("email ok!");
                 Console.Read();
